@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="地图.css" rel="stylesheet" />
+    <script src="ol-debug.js"></script>
+    <link href="ol.css" rel="stylesheet" />
+    <script src="jquery-1.11.2.min.js"></script>
+    <script type="text/javascript">
+        function login() {
+            //每个载入浏览器的HTML.文档都会成为Document对象
+            //document.getElementById('enablecontent').style.dispaly:
+            $("#enablecontent").show();
+            $(".systemName").css("color", "blue");
+        };
+
+        function logcancel() {
+            $("#enablecontent").hide();
+        };
+
+    var map;
+    function init() {
+        var scaleLineControl = new ol.control.ScaleLine({
+            units: "metric",
+            //className: 'custom-scale-line',
+            target: document.getElementById('Toolbar'),
+        });
+
+        //////实例化鹰眼控件（OverviewMap）,最简单的默认样式鹰眼控件
+        //var overviewMapControl = new ol.control.OverviewMap({
+        //    target: document.getElementById('overview'),
+        //});
+
+        ////实例化鹰眼控件（OverviewMap）,自定义样式的鹰眼控件  
+        var overviewMapControl = new ol.control.OverviewMap({
+            //鹰眼控件样式（see in overviewmap-custom.html to see the custom CSS used）
+            className: 'ol-overviewmap ol-custom-overviewmap',
+            //鹰眼中加载同坐标系下不同数据源的图层
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM({
+                        'url': 'http://{a-c}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'
+                    })
+                })
+            ],
+            //鹰眼控件展开时功能按钮上的标识（网页的JS的字符编码）
+            collapseLabel: '\u00BB',
+            //鹰眼控件折叠时功能按钮上的标识（网页的JS的字符编码）
+            label: '\u00AB',
+            //初始为展开显示方式
+            collapsed:false,
+            target: document.getElementById('overview'),
+        });
+
+        map = new ol.Map({
+            target: "mapCon",
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            view: new ol.View({
+                center: [114, 30],
+                zoom: 3
+            }),
+            //控件置空
+            //controls:[]
+            controls: ol.control.defaults().extend([scaleLineControl]),
+            //controls: ol.control.defaults().extend([overviewMapControl]),
+        });
+        map.addControl(overviewMapControl);
+    };
+
+    /////////////////////////////////////////////////////////搜索////////////////////////////////////////
+    function searchbt() {
+        //获取文本框内容
+        //JS获取文本框的值
+        var txt = document.getElementById("seartxt").value;
+        //jquery获取文本框
+        var txt = $("#seartxt").val()
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("浏览器不支持地理定位。");
+        }
+
+    };
+    function showPosition(position) {
+        console.log(position);
+        var lat = position.coords.latitude; //纬度 
+        var lag = position.coords.longitude; //经度 
+        console.log('纬度:' + lat + ',经度:' + lag);
+    }
+    /////////////////////////////////////////////////////////画点线面////////////////////////////////////////
+    var drawSource, drawVector, draw;
+    function DrawPoint() {
+          ClearDraw();
+          drawSource = new ol.source.Vector({ wrapX: false });
+          drawVector = new ol.layer.Vector({source: drawSource });
+          map.addLayer(drawVector);
+        //实例化交互绘制类对象并添加到地图容器中
+        draw = new ol.interaction.Draw({
+            source: drawSource,
+            type: "Point"               //Linestring,Polygon
+        });
+        map.addInteraction(draw);
+    };
+
+    function DrawLine() {
+        ClearDraw();
+        drawSource = new ol.source.Vector({ wrapX: false });
+        drawVector = new ol.layer.Vector({ source: drawSource });
+        map.addLayer(drawVector);
+        //实例化交互绘制类对象并添加到地图容器中
+        draw = new ol.interaction.Draw({
+            source: drawSource,
+            type: "LineString"               //LineString,Polygon
+        });
+        map.addInteraction(draw);
+    };
+
+    function DrawPolygon() {
+        ClearDraw();
+        drawSource = new ol.source.Vector({ wrapX: false });
+        drawVector = new ol.layer.Vector({ source: drawSource });
+        map.addLayer(drawVector);
+        //实例化交互绘制类对象并添加到地图容器中
+        draw = new ol.interaction.Draw({
+            source: drawSource,
+            type: "Polygon"               //Linestring,Polygon
+        });
+        map.addInteraction(draw);
+    };
+
+    function ClearDraw() {
+        if (drawSource) {
+            drawSource.clear();
+            drawSource = null;
+        };
+        if (drawVector) {
+            map.removeLayer(drawVector);
+            drawVector = null;
+        };
+        if (draw) {
+            //移除绘制图形
+            map.removeInteraction(draw);
+        };
+    };
+
+        /////////////////////////////////////////////////////////测量////////////////////////////////////////
+    function PointMeasure() {
+        ClearDraw();
+        drawSource = new ol.source.Vector({ wrapX: false });
+        drawVector = new ol.layer.Vector({ source: drawSource });
+        map.addLayer(drawVector);
+        //实例化交互绘制类对象并添加到地图容器中
+        draw = new ol.interaction.Draw({
+            source: drawSource,
+            type: "Point"               //Linestring,Polygon
+        });
+        map.addInteraction(draw);
+    };
+
+    function LineMeasure() {
+        ClearDraw();
+        drawSource = new ol.source.Vector({ wrapX: false });
+        drawVector = new ol.layer.Vector({ source: drawSource });
+        map.addLayer(drawVector);
+        //实例化交互绘制类对象并添加到地图容器中
+        draw = new ol.interaction.Draw({
+            source: drawSource,
+            type: "LineString"               //LineString,Polygon
+        });
+        map.addInteraction(draw);
+    };
+
+    function PolygonMeasure() {
+        ClearDraw();
+        drawSource = new ol.source.Vector({ wrapX: false });
+        drawVector = new ol.layer.Vector({ source: drawSource });
+        map.addLayer(drawVector);
+        //实例化交互绘制类对象并添加到地图容器中
+        draw = new ol.interaction.Draw({
+            source: drawSource,
+            type: "Polygon"               //Linestring,Polygon
+        });
+        map.addInteraction(draw);
+    };
+
+     </script>
+    <title>map</title>
+</head>
+<body onload="init()">
+    <!--*************************************************头************************************************************************-->
+    <div class="head">
+        <div id="hleftmenu">
+            <img src="maps.png" id="logo"/>
+            <span id="logotxt">城市一张图</span>
+        </div>
+
+        <div id="rightmenu">
+            <ul class="menuul">
+                <!--style="text-decoration: none;"-->
+                <button onclick="login()">登录</button>
+                <!--<input  type="button"  id="botton1" value="登录" onclick="login()"/>-->
+                <!--<li><a href="http://www.baidu.com" style="text-decoration: none;">登录</a></li>-->
+                <li><a href="#" style="text-decoration: none;color:black" >首页</a></li> 
+                <li><a href="https://map.baidu.com/" style="text-decoration: none;color:black">在线地图</a></li>
+                <li><a href="http://www.smaryun.com/dev/dev_environment.php" style="text-decoration: none;color:black">资源中心</a></li>
+                <li><a href="http://www.smaryun.com/helper.php#/21" style="text-decoration: none;color:black">联系我们</a></li>
+            </ul>
+        </div>
+    </div>
+
+<!-- ********************************************右边******************************************************************-->
+    <div class="content">
+        <div id="mapCon">
+            <div id="Toolbar"></div>
+            <div id="overview"></div>
+        </div>
+    </div>
+<!--********************************************左边容器***************************************************************************-->
+    <div class="left">
+        <div class="search">
+           <input type="text" id="seartxt"/>
+           <input type="button" value="搜索" id="searbt" style="border:0;background-color:#3873a7;font-size:16px" onclick="searchbt()"/>
+        </div>
+         
+        <div id="leftmenu">
+            <ul class="ltul">
+                <li class="li1">添加位置
+                   
+                     <ul class="ul1">
+                        <!--<li class="li11"><a href="#" style="text-decoration: none;">点</a></li>-->    
+                         <li class="li11" onclick="DrawPoint()">点</li>               
+                        <li class="li12" onclick="DrawLine()">线</li>
+                        <li class="li13" onclick="DrawPolygon()">面</li>
+                        <li class="li14" onclick="ClearDraw()">清除</li>
+                    </ul>
+
+                </li>
+                 
+                <li class="li2">测量工具
+                    <ul class="ul2">
+                        <li class="li21" onclick="LineMeasure()">距离测量</li>                   
+                        <li class="li22" onclick="PolygonMeasure()">面积测量</li>
+                        <li class="li23" onclick="PointMeasure()">高程测量</li>
+                    </ul>
+                </li>
+
+                <li class="li3">路径分析
+                    <ul class="ul3">
+                        <li class="li31">最短路径</li>                   
+                        <li class="li32">时间最短</li>
+                        <li class="li33">避开高速</li>
+                    </ul>
+                </li>
+
+                <li class="li4">商业网点
+                    <ul class="ul4">
+                        <li class="li41">学校</li>                   
+                        <li class="li42">医院</li>
+                        <li class="li43">超市</li>
+                    </ul>
+                </li>
+
+                <li class="li5">道路数据
+                    <ul class="ul5">
+                        <li id="li51" style="color:#551a8b;">一级道路</li>
+                        <li id="li52" style="color:#551a8b;">二级道路</li>
+                        <li id="li53" style="color:#551a8b;">三级道路</li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+<!-- ***********************************************登录**********************************************************************-->
+    <div id="enablecontent">
+        <div id="loginDialog">
+            <p>欢迎登录系统</p>
+            <table id="lgtb">
+                <tr>
+                    <td><span style="padding:5px;font-size:14px">用户名：  </span></td>
+                    <td><input type="text" value="zmr" style="padding:5px;width:100px" /></td>
+                </tr>
+                <tr>
+                    <td><span style="padding:5px;font-size:14px">密码：  </span></td>
+                    <td><input type="password" value="*****" style="padding:5px;width:100px" /></td>
+                </tr>
+            </table>
+            <div id="loginBotton">
+                <input type="button" id="lginsubmit" value="登录" style="padding:5px;"/>
+                <input type="button" id="lgincancel" value="取消" style="padding:5px;" onclick="logcancel()"/>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
