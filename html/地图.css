@@ -1,0 +1,441 @@
+﻿body {
+    width:100%;
+    height:100%;
+    margin: 0;
+    padding: 0;
+}
+*{    margin: 0;padding: 0;}
+/********************************************************上**********************************************************************/
+.head {
+    background:blue;
+    position: fixed;
+    top: 0;
+    left:0;
+    height:70px;
+    width: 1500px;
+}
+#hleftmenu{
+    background: blue;
+    position:absolute;
+    top: 0;
+    left:0px;
+    height:70px;
+    width: 300px;
+    }
+#logo{
+    position:absolute;
+    left:-15px;
+    top:-15px;
+    width:100px;
+    height:100px;
+
+    }
+#logotxt {
+    position:absolute;
+    left:80px;
+    top:10px;
+    color:white;
+    font-size:35px;
+}
+
+#rightmenu {
+    background: blue;
+    position:absolute;
+    top: 0;
+    left: 700px;
+    height:70px;
+    width: 800px;
+}
+#rightmenu ul {
+        list-style-type: none;
+        /*vertical-align:middle;*/
+        height:70px;
+        /*background:green;*/
+    }
+#rightmenu ul li{
+        float: left;
+        margin: 15px 50px 50px 10px;
+        font-size:25px;
+        /*height:60px;*/
+        vertical-align:middle;
+        /*background:blue;*/
+    }
+#rightmenu button{
+    float: right;
+    margin: 15px 150px 150px 10px;
+    border:0;
+    background:blue ;
+    font-size:25px;
+    color:black;
+}
+
+/***************************************************登录*******************************************************************/
+#enablecontent {
+    border:2px solid blue;
+    background-color: #c0ceda;
+    position:absolute;
+    left:600px;
+    top:200px;
+    width:250px;
+    height:200px;
+    display:none;
+}
+
+#loginDialog p {
+    position:absolute;
+    left:70px;
+    top:5px;
+}
+
+#lgtb {
+    position:absolute;
+    left:25px;
+    top:55px;
+}
+
+#loginBotton {
+    position:absolute;
+    left:25px;
+    top:120px;
+}
+
+#lginsubmit{
+    position:absolute;
+    left:40px;
+    top:20px;
+}
+
+#lgincancel{
+    position:absolute;
+    left:120px;
+    top:20px;
+}
+
+/********************************************************左***********************************************************************/
+
+.left {
+    background:#3873a7;
+    position: fixed;
+    top:70px;
+    left:0;
+    bottom: 0;
+    height:570px;
+    width: 300px;
+}
+.search {
+    background:#5dbec7;
+    position: absolute;
+    top:0px;
+    left:0px;
+    height:80px;
+    width: 300px;
+}
+
+#seartxt {
+    position: absolute;
+    top:30px;
+    left:20px;
+    height:20px;
+    width: 210px;
+}
+#searbt {
+    position: absolute;
+    top:30px;
+    left:240px;
+    height:25px;
+    width: 50px;
+}
+#leftmenu {
+    background:#5dbec7;
+    position: absolute;
+    top:80px;
+    left:0px;
+    height:570px;
+    width: 300px;
+}
+.ltul {
+    position:absolute;
+    color:#551a8b;
+    list-style-type: none;
+    font-size:30px;
+    left:0px;
+    width:300px;
+    /*background:red;*/
+}
+/*******一级**************************************************************/
+.li1 {
+    color:#551a8b;
+    background:#8ccad0;
+    text-align:center;
+    cursor:pointer;
+}
+
+.li2 {
+    color:#551a8b;
+    background: #8ccad0;
+    text-align:center;
+    cursor:pointer;
+}
+.li3 {
+    color:#551a8b;
+    background: #8ccad0;
+    text-align:center;
+    cursor:pointer;
+}
+.li4 {
+    color:#551a8b;
+    background: #8ccad0;
+    text-align:center;
+    cursor:pointer;
+}
+.li5 {
+    color:#551a8b;
+    background: #8ccad0;
+    text-align:center;
+    cursor:pointer;
+}
+
+/*****************************************二级******************************************8*/
+.ul1 {
+    list-style-type: none;
+    display:none;
+    color:black;            /*#551a8b*/
+    font-size:20px;
+    left:0px;
+    width:300px;
+    text-decoration: none;
+}
+.ul2 {
+    list-style-type: none;
+    display:none;
+    color:black;
+    font-size:20px;
+    left:0px;
+    width:300px;
+}
+.ul3 {
+    list-style-type: none;
+    display:none;
+    color:black;
+    font-size:20px;
+    left:0px;
+    width:300px;
+}
+.ul4 {
+    list-style-type: none;
+    display:none;
+    color:black;
+    font-size:20px;
+    left:0px;
+    width:300px;
+}
+.ul5 {
+    list-style-type: none;
+    display:none;
+    color:black;
+    font-size:20px;
+    left:0px;
+    width:300px;
+    background:#5dbec7;
+}
+
+
+.ltul .li1:hover .ul1{
+    display:block;
+    cursor:default;
+}
+.ltul .li2:hover .ul2{
+    display:block;
+    cursor:default;
+}
+.ltul .li3:hover .ul3{
+    display:block;
+    cursor:default;
+}
+.ltul .li4:hover .ul4{
+    display:block;
+    cursor:default;
+}
+.ltul .li5:hover .ul5{
+    display:block;
+    cursor:default;
+}
+
+.li11 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li12 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li13 {
+    color:#551a8b;
+    background:#5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+
+.li14 {
+    color:#551a8b;
+    background:#5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+
+.li21 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li22 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li23 {
+    color:#551a8b;
+    background:#5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+
+.li31 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li32 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li33 {
+    color:#551a8b;
+    background:#5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+
+.li41 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li42 {
+    color:#551a8b;
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li43 {
+    color:#551a8b;
+    background:#5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+
+.li51 {
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li52 {
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+.li53 {
+    background: #5dbec7;
+    text-align:center;
+    left:0px;
+    width:300px;
+}
+
+
+/*右边**************************************************************************************************************************/
+.content{
+    background:#aad3df;  /*#e1c0e8*/  /*浅蓝*#aad3df*/
+    position: fixed;
+    top:70px;
+    left:300px;
+    height:570px;
+    width:1200px ;
+}
+
+#mapCon{
+    position:fixed;
+    left:300px;
+    top:70px;
+    height:570px;
+    width:1200px;
+    z-index:1;
+}
+
+#Toolbar {
+    position:fixed;
+    top:600px;
+    left:300px;
+    height:40px;
+    width:1200px;
+    /*background:#aad3df;*/
+    z-index:2;
+}
+
+#overview {
+    position:absolute;
+    top:10px;
+    left:900px;                                                    /**/
+    height:163px;
+    width:172px;                                             /**/
+    /*background:#aad3df;*/                       
+    z-index:2;
+}
+
+.ol-custom-overviewmap, .ol-custom-overviewmap.ol-uncollapsible {
+    margin-left:-5px;
+    position:absolute;
+    top: 1px;
+    height:156px;
+    width:200px;
+}
+/* 鹰眼控件展开时控件外框的样式 */
+.ol-custom-overviewmap:not(.ol-collapsed)  {
+    border: 1px solid black;
+}
+
+/* 鹰眼控件中显示当前窗口中主图区域的边框 */
+.ol-custom-overviewmap .ol-overviewmap-box {
+    border: 2px solid red;
+}
+/* 鹰眼控件展开时其控件按钮图标的样式 */
+.ol-custom-overviewmap:not(.ol-collapsed) button{
+    position:absolute;
+    bottom: auto;
+    top: 1px;
+}
+
